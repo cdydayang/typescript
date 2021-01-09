@@ -4,6 +4,7 @@
     "module": "commonjs", // 编译生成的目标js代码的模块化标准
     "lib": ["ES2016"],  // 默认情况下ts的环境，这样的话在ts文件中就没法使用window等浏览器环境的全局对象了
     "outDir": "./dist", // 编译结果的存放文件夹
+    "strictNullChecks": true, // 禁止将 null 或 undefined 赋值给其他类型
   },
   "include": ["./src"] // 编译的目标文件夹
 }

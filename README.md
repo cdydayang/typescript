@@ -1,37 +1,59 @@
-# typescript
+# ts的基本类型检查约束
 
-## ts是js的超集，，是一个可选的，静态的类型系统（对代码中的所有标识符进行类型检查）
+## **如何进行类型约束**
 
-## 如何在node环境中搭建ts环境?
+- 变量后添加 `:` 即可，如  ```let str:string;```
+- ts在很多场景下可以进行自动的类型推导；
+---
+## **基本类型**：
+- `number`
+- `boolean`
+- `string`
+- `object`（不太常用）
+- 数组
+- `null` 和 `undefined`
+  - `null` 和 `undefined` 是其他类型的子类型
+  - 这样的话就可以将`null` 和 `undefined` 赋值给其他类型的变量，如 `let string:number = null`；但这就会引起程序中隐患，因此我们必须规避这样的问题，**在`tsconfig.json`文件中加入`"strictNullChecks": true` 的编译选项。**
+---
+## **其他常用类型**
 
-- 默认情况下，ts会做出下面几种假设：
-  - 1、当前代码的执行环境是dom浏览器环境；
-  - 2、如果代码中没有使用模块化语句（import、export），便会认为代码是全局执行；
-  - 3、默认的编译目标代码是ES3（最大可能的兼容各个js版本）;
-  ----
-- 上述的假设会对我们的开造成困扰，有两种的方式更改以上假设：
-  - 1、使用`tsc`命令的时候，添加选项参数
-  - 2、使用ts的配置文件，更改编译选项
-    - 自己手动添加配置文件，`tsconfig.json`文件
-    - 使用`tsc --init`命令生成`tsconfig.json`文件
-    
-  -----
-
-- 使用配置文件
-    - 基本配置文件如下（后续会视情况自行添加）：
-    ![Image text](https://github.com/cdydayang/img/blob/master/carbon%20(1).png?raw=true)
-    - *注意：使用了配置文件后，使用`tsc`命令就不可以跟上文件名了，如果跟上文件名的话，就会忽略配置文件。*
-    - 配置上`"lib": ["ES2016"]`这个配置，会发现在ts文件中，连`console.log`已经不能使用了，解决办法就是安装`@types/node`库（ts的一个官方的库，其中包含了许多对js代码的类型描述），就可解决
-    `npm i -D @types/node`
+- 联合类型：多种类型任选其一
+  - 写法如下：```let str:string | null; ``` ，表示 `str` 变量既可以是 `string` 类型又可以赋值为 `null`；
 
   ---
-
-- 配置项目目录结构
-  - 添加`src`专门存放ts文件，配置是`include`
-  - 添加`dist`专门存放编译结果文件，配置是`outDir`
+- `void` 类型
+  - 通常用于约束函数的返回类型，表示没有任何返回值；
 
   ---
-- 第三方库简化编译流程
-  - ts-node 将ts代码在内存中完成编译，并进行运行
-    `ts-node ./src/index.ts`
-  - nodemon 用于监测文件变化 `nodemon --exec ts-node ./src/index.ts`
+- `never` 类型
+  - 通常用于约束函数的返回类型，表示函数永远不会结束；
+
+  ---
+- 字面量类型
+  - 使用值进行约束；
+  - 案例：
+  ![](https://github.com/cdydayang/img/blob/master/carbon%20(2).png?raw=true)
+
+  ---
+- 元祖类型（tuple）
+  - 一个固定长度的数组，并且数组中每一项的值类型也固定；
+  - 案例：
+  ```
+    let arr:[string,number];
+    arr = ['dayang',18];
+  ```
+---
+- any 类型
+
+---
+
+## **类型别名**
+- 对已知的一些类型定义名称:
+- 形式：``` type 类型名 = ... ```
+- 案例：
+  
+    ![](https://github.com/cdydayang/img/blob/master/carbon%20(3).png?raw=true)
+
+---
+
+## **源代码和编译结果的差异**
