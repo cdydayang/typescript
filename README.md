@@ -1,59 +1,37 @@
-# ts的基本类型检查约束
+# 扩展类型-枚举
 
-## **如何进行类型约束**
-
-- 变量后添加 `:` 即可，如  ```let str:string;```
-- ts在很多场景下可以进行自动的类型推导；
----
-## **基本类型**：
-- `number`
-- `boolean`
-- `string`
-- `object`（不太常用）
-- 数组
-- `null` 和 `undefined`
-  - `null` 和 `undefined` 是其他类型的子类型
-  - 这样的话就可以将`null` 和 `undefined` 赋值给其他类型的变量，如 `let string:number = null`；但这就会引起程序中隐患，因此我们必须规避这样的问题，**在`tsconfig.json`文件中加入`"strictNullChecks": true` 的编译选项。**
----
-## **其他常用类型**
-
-- 联合类型：多种类型任选其一
-  - 写法如下：```let str:string | null; ``` ，表示 `str` 变量既可以是 `string` 类型又可以赋值为 `null`；
-
-  ---
-- `void` 类型
-  - 通常用于约束函数的返回类型，表示没有任何返回值；
-
-  ---
-- `never` 类型
-  - 通常用于约束函数的返回类型，表示函数永远不会结束；
-
-  ---
-- 字面量类型
-  - 使用值进行约束；
-  - 案例：
-  ![](https://github.com/cdydayang/img/blob/master/carbon%20(2).png?raw=true)
-
-  ---
-- 元祖类型（tuple）
-  - 一个固定长度的数组，并且数组中每一项的值类型也固定；
-  - 案例：
-  ```
-    let arr:[string,number];
-    arr = ['dayang',18];
-  ```
----
-- any 类型
+## 作用：*通常用于约束某个变量的取值范围，这样会将某个值用某个符号来表示了，如果一个大型程序中需要修改的话，只需要修改枚举定义的值即可，这也是字面量和类型别名所不具备的优势。*
 
 ---
 
-## **类型别名**
-- 对已知的一些类型定义名称:
-- 形式：``` type 类型名 = ... ```
-- 案例：
-  
-    ![](https://github.com/cdydayang/img/blob/master/carbon%20(3).png?raw=true)
+## 形式：
+```javascript
+enum 名称 {
+  字段名1 = 值,
+  字段名2 = 值,
+  字段名3 = 值,
+}
+```
 
 ---
 
-## **源代码和编译结果的差异**
+## 特点
+- 枚举会出现在编译结果中，表现形式为一个对象
+- 枚举的字段值可以是字符串或者数字
+- 数字枚举的值会自动子自增
+- 枚举的数字值 和 字符串的值的编译结果会有差别
+  - 如下案例,可以看到数字的值外面还包有一层：
+  - 数字值的编译结果：
+  ![](https://github.com/cdydayang/img/blob/master/carbon%20(4).png?raw=true)
+
+  - 字符串值的编译结果：
+  ![](https://github.com/cdydayang/img/blob/master/carbon%20(5).png?raw=true)
+
+---
+
+## **实践注意事项**
+- **不要在一个枚举中存在字符串和数字枚举并存的情况**
+
+
+
+

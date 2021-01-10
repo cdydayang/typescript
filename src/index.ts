@@ -1,12 +1,14 @@
+import { log } from "console";
 
-type Gneder = "male" | "female";
-
-type User = {
-  name: string,
-  age: number,
-  gender: Gneder
+enum Gender {
+  male = "男",
+  female = "女"
 }
 
-function getUsers(g: Gneder): User[] {
-  return [];
-}
+let g:Gender;
+
+
+g = Gender.female
+
+console.log(g);
+
