@@ -19,7 +19,7 @@
 
 - 使用配置文件
     - 基本配置文件如下（后续会视情况自行添加）：
-    ![](https://gitee.com/cdytestshow/img/raw/master/carbon%20(1).png)
+    ![](https://lark-assets-prod-aliyun.oss-cn-hangzhou.aliyuncs.com/yuque/0/2021/png/2558822/1610344646340-resources/10907269/png/8365ce14-02a4-435b-870b-c4b2de059e91.png?OSSAccessKeyId=LTAI4GGhPJmQ4HWCmhDAn4F5&Expires=1610346466&Signature=1l3u3OPPhVa%2FUWQ8euCOJIkiWm0%3D)
     - *注意：使用了配置文件后，使用`tsc`命令就不可以跟上文件名了，如果跟上文件名的话，就会忽略配置文件。*
     - 配置上`"lib": ["ES2016"]`这个配置，会发现在ts文件中，连`console.log`已经不能使用了，解决办法就是安装`@types/node`库（ts的一个官方的库，其中包含了许多对js代码的类型描述），就可解决
     `npm i -D @types/node`
