@@ -1,6 +1,6 @@
 # typescript
 
-## ts是js的超集，，是一个可选的，静态的类型系统（对代码中的所有标识符进行类型检查）
+## ts是js的超集，是一个可选的，静态的类型系统（对代码中的所有标识符进行类型检查）
 
 ## 如何在node环境中搭建ts环境?
 
@@ -19,7 +19,7 @@
 
 - 使用配置文件
     - 基本配置文件如下（后续会视情况自行添加）：
-    ![Image text](https://github.com/cdydayang/img/blob/master/carbon%20(1).png?raw=true)
+    ![](https://gitee.com/cdytestshow/img/raw/master/carbon%20(1).png)
     - *注意：使用了配置文件后，使用`tsc`命令就不可以跟上文件名了，如果跟上文件名的话，就会忽略配置文件。*
     - 配置上`"lib": ["ES2016"]`这个配置，会发现在ts文件中，连`console.log`已经不能使用了，解决办法就是安装`@types/node`库（ts的一个官方的库，其中包含了许多对js代码的类型描述），就可解决
     `npm i -D @types/node`
